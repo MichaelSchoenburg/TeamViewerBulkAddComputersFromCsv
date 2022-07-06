@@ -52,6 +52,11 @@
 #>
 
 # $ApiTokenUser = 'MichaelSchoenburg'
+if ($PSScriptRoot) {
+    Set-Location -Path $PSScriptRoot
+} else {
+    Set-Location -Path "C:\Users\mschoenburg\GIT\MscTeamViewerInterface"
+}
 $ApiTokenUser = 'Onboarding'
 $ApiToken = (Get-Content .\TeamViewerData.ini | Select -Skip 1 | ConvertFrom-StringData).$ApiTokenUser 
 $ApiTokenSec = ConvertTo-SecureString -String $ApiToken -AsPlainText -Force
@@ -131,8 +136,6 @@ function Write-ConsoleLog {
 #>
 
 Connect-TeamViewerApi -ApiToken $ApiTokenSec
-
-$Groups = Get-TeamViewerGroup
 
 for ($i = 0; $i -lt $Csv.Count; $i++) {
     # Write-Progress -Activity 'TeamViewer Stuff' -CurrentOperation 'Checking if device already exists' -PercentComplete ( $i/$CSV.Count*100 ) # Doesn't work in VS Code
