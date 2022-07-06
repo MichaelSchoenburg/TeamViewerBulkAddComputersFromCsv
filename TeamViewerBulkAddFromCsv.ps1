@@ -115,21 +115,6 @@ function Write-ConsoleLog {
 }
 
 #endregion FUNCTIONS
-#region OBSOLETE
-
-<# 
-    I used this to share all groups with the onboarding user
-#>
-
-# $UserOnboarding = 'u142073501' # Temp
-
-# $Groups = Get-TeamViewerGroup
-# foreach ($g in $Groups) {
-#     Log "Processing Group $( $g.Name )"
-#     Publish-TeamViewerGroup -Group $g.Id -User $UserOnboarding -Permissions readwrite
-# }
-
-#endregion OBSOLETE
 #region EXECUTION
 <# 
     Script entry point
