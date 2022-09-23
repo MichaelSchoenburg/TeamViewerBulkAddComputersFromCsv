@@ -120,7 +120,9 @@ function Write-ConsoleLog {
     Script entry point
 #>
 
-Connect-TeamViewerApi -ApiToken $ApiTokenSec
+Connect-TeamViewerApi -ApiToken $ApiTokenSec # Install-Module TeamViewerPS
+
+$Groups = Get-TeamViewerGroup
 
 for ($i = 0; $i -lt $Csv.Count; $i++) {
     # Write-Progress -Activity 'TeamViewer Stuff' -CurrentOperation 'Checking if device already exists' -PercentComplete ( $i/$CSV.Count*100 ) # Doesn't work in VS Code
@@ -189,7 +191,6 @@ for ($i = 0; $i -lt $Csv.Count; $i++) {
         } else {
             New-TeamViewerDevice -TeamViewerId $TvId -Group $TvGroup.Id -Name $Name
         }
-        
     }
 }
 
